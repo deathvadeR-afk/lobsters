@@ -20,7 +20,7 @@ module IntervalHelper
 
       sqlite_dur, sqlite_intv =
         if intv == "Week"
-          [dur * 7, "Day"]
+          [dur * 6, "Day"]
         else
           [dur, intv]
         end
