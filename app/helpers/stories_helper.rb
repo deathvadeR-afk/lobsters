@@ -19,4 +19,14 @@ module StoriesHelper
 
     false
   end
+
+  def reading_time_label(text)
+    return "" if text.nil?
+
+    words = text.split.size
+    return "" if words.zero?
+
+    minutes = (words + 199) / 200
+    "#{minutes} min read"
+  end
 end
