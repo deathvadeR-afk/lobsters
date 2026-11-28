@@ -18,5 +18,17 @@ describe IntervalHelper do
       expect(helper.time_interval("2")).to eq(placeholder)
       expect(helper.time_interval("m")).to eq(placeholder)
     end
+
+    it "[QP-SMRAILS-7-1] Two-week period resolves to a 14-day interval" do
+      interval = helper.time_interval("2w")
+      expect(interval[:dur]).to eq(14)
+      expect(interval[:intv]).to eq("Day")
+    end
+
+    it "[QP-SMRAILS-7-2] One-week period resolves to a 7-day interval" do
+      interval = helper.time_interval("1w")
+      expect(interval[:dur]).to eq(7)
+      expect(interval[:intv]).to eq("Day")
+    end
   end
 end

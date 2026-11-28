@@ -88,4 +88,17 @@ describe "home", type: :request do
       expect(response.body).to include(text.title)
     end
   end
+
+  describe "top stories by period" do
+    it "[QP-SMRAILS-7-3] Top stories by a two-week period include stories from 13 days ago but not 15 days ago" do
+      within_period = create(:story, title: "story posted thirteen days ago", created_at: 13.days.ago)
+      outside_period = create(:story, title: "story posted fifteen days ago", created_at: 15.days.ago)
+
+      get "/top/2w"
+
+      expect(response).to be_successful
+      expect(response.body).to include(within_period.title)
+      expect(response.body).not_to include(outside_period.title)
+    end
+  end
 end
